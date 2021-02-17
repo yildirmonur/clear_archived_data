@@ -1,3 +1,4 @@
+require 'fileutils'
 require 'fastlane/action'
 require_relative '../helper/clear_archived_data_helper'
 
