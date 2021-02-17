@@ -7,7 +7,7 @@ module Fastlane
     class ClearArchivedDataAction < Action
       def self.run(params)
         path = Actions.lane_context[SharedValues::XCODEBUILD_ARCHIVE]
-        if (path.present? && File.directory?(path))
+        if (!path.nil? && File.directory?(path))
           UI.message("Archive file found at path: #{path}")
           FileUtils.rm_rf(path)
           UI.success("Successfully deleted archive file. ♻️")
