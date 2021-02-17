@@ -12,7 +12,7 @@ fastlane add_plugin clear_archived_data
 
 ## About clear_archived_data
 
-Clears xcode archive folder
+Deletes the archive file located at SharedValues::XCODEBUILD_ARCHIVE.
 
 **Note to author:** Add a more detailed description about this plugin here. If your plugin contains multiple actions, make sure to mention them here.
 
