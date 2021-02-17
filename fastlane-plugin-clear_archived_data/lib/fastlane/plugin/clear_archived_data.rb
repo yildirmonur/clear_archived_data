@@ -1,46 +1,16 @@
-require 'fileutils'
+require 'fastlane/plugin/clear_archived_data/version'
 
 module Fastlane
-  module Actions
-    module SharedValues
-      CLEAR_ARCHIVED_DATA_CUSTOM_VALUE = :CLEAR_ARCHIVED_DATA_CUSTOM_VALUE
-    end
-
-    class ClearArchivedDataAction < Action
-      def self.run(params)
-        # fastlane will take care of reading in the parameter and fetching the environment variable:
-        path = File.expand_path("~/Library/Developer/Xcode/Archives/SharedValues::XCODEBUILD_ARCHIVE")
-        UI.message("Archived Data path located at: #{path}")
-        FileUtils.rm_rf(path) if File.directory?(path)
-        UI.success("Successfully cleared Archived Data ♻️")
-      end
-
-      def self.description
-        "Deletes the Xcode Archived Data"
-      end
-      def self.details
-        "Deletes the Archived Data from path set on Xcode or a supplied path"
-      end
-
-      def self.available_options
-      end
-
-      def self.output
-      end
-
-      def self.return_value
-      end
-
-      def self.authors
-        ["Onur Yıldırım"]
-      end
-
-      def self.is_supported?(platform)
-        [
-        'clear_derived_data'
-        ]
-        platform == :ios
-      end
+  module ClearArchivedData
+    # Return all .rb files inside the "actions" and "helper" directory
+    def self.all_classes
+      Dir[File.expand_path('**/{actions,helper}/*.rb', File.dirname(__FILE__))]
     end
   end
+end
+
+# By default we want to import all available actions and helpers
+# A plugin can contain any number of actions and plugins
+Fastlane::ClearArchivedData.all_classes.each do |current|
+  require current
 end

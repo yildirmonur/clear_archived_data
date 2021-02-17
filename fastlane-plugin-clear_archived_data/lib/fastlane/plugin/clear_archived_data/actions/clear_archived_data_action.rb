@@ -5,11 +5,18 @@ module Fastlane
   module Actions
     class ClearArchivedDataAction < Action
       def self.run(params)
-        UI.message("The clear_archived_data plugin is working!")
+        path = Actions.lane_context[SharedValues::XCODEBUILD_ARCHIVE]
+        if File.directory?(path)
+          UI.message("Archive file found at path: #{path}")
+          FileUtils.rm_rf(path)
+          UI.success("Successfully deleted archive file. ♻️")
+        else
+          UI.message("Unable to locate archive file. Skipping...")
+        end
       end
 
       def self.description
-        "Clears xcode archive folder"
+        "Deletes the archive file located at SharedValues::XCODEBUILD_ARCHIVE."
       end
 
       def self.authors
@@ -17,30 +24,19 @@ module Fastlane
       end
 
       def self.return_value
-        # If your method provides a return value, you can describe here what it does
+         "No return value"
       end
 
       def self.details
-        # Optional:
-        "Deletes the Archived data from path set on Xcode"
+        "Deletes the archive file from path set on Xcode."
       end
 
       def self.available_options
-        [
-          # FastlaneCore::ConfigItem.new(key: :your_option,
-          #                         env_name: "CLEAR_ARCHIVED_DATA_YOUR_OPTION",
-          #                      description: "A description of your option",
-          #                         optional: false,
-          #                             type: String)
-        ]
+        []
       end
 
       def self.is_supported?(platform)
-        # Adjust this if your plugin only works for a particular platform (iOS vs. Android, for example)
-        # See: https://docs.fastlane.tools/advanced/#control-configuration-by-lane-and-by-platform
-        #
-        # [:ios, :mac, :android].include?(platform)
-        true
+        [:ios, :mac].include?(platform)
       end
     end
   end
