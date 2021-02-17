@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
   spec.email         = 'yildirimpost@gmail.com'
 
   spec.summary       = 'Clears xcode archive folder'
-  # spec.homepage      = "https://github.com/<GITHUB_USERNAME>/fastlane-plugin-clear_archived_data"
+  spec.homepage      = "https://github.com/yildirmonur/fastlane-plugin-clear_archived_data"
   spec.license       = "MIT"
 
   spec.files         = Dir["lib/**/*"] + %w(README.md LICENSE)
