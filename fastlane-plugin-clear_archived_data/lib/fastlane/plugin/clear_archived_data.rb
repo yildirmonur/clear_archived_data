@@ -9,7 +9,7 @@ module Fastlane
     class ClearArchivedDataAction < Action
       def self.run(params)
         # fastlane will take care of reading in the parameter and fetching the environment variable:
-        path = File.expand_path("~/Library/Developer/Xcode/Archives")
+        path = File.expand_path("~/Library/Developer/Xcode/Archives/SharedValues::XCODEBUILD_ARCHIVE")
         UI.message("Archived Data path located at: #{path}")
         FileUtils.rm_rf(path) if File.directory?(path)
         UI.success("Successfully cleared Archived Data ♻️")
