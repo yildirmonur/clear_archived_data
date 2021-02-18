@@ -12,7 +12,8 @@ Then navigate to lib -> fastlane -> plugin_name.rb edit and add your action here
 Add created directory to your github as a public.
 
 ## Publishing plugin
-First you need to have an acoount on [RubyGems.org](https://rubygems.org) 
+First you need to have an acoount on [RubyGems.org](https://rubygems.org)  
+
 Update spec.homepage to show your github plugin url in fastlane-plugin-[plugin_name].gemspec file
 
 ## Time to release
